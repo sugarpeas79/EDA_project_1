@@ -1,4 +1,14 @@
-# Read data from folder, filter for desired dates
+fileurl <- 'https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip'
+# create a temporary directory
+td = tempdir()
+# create the placeholder file
+tf = tempfile(tmpdir=td, fileext=".zip")
+# download into the placeholder file
+download.file(fileurl, tf)
+# unzip the file to root directory
+unzip(tf)
+
+# Filter for desired dates
 library(dplyr)
 data <- read.csv('household_power_consumption.txt', header=TRUE, sep = ";")
 small_data_2 <- filter(data, Date == '2/2/2007')
